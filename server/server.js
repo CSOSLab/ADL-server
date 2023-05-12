@@ -74,12 +74,12 @@ function main()
 
     app.get(`/RAW_ADL_SOUND`, (req, res) => {
 
-        requestHandler.onRawADLGridEye(req, res);
+        requestHandler.onRawADLSound(req, res);
     });
 
     app.get(`/RAW_ADL_GRIDEYE`, (req, res) => {
 
-        requestHandler.onRawADLSound(req, res);
+        requestHandler.onRawADLGridEye(req, res);        
     });
 
     const httpServer = app.listen(port, hostname, () => {
