@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADL Sound</title>
+    <style>
+        table, th, td {
+            border : 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>ADL Sound</h1>
+    <table>
+        <tr>
+            <% for( i in heads ) { %>
+            <th> <%= heads[i] %></th>
+            <% } %>
+        </tr>
+
+    <% for ( i in listData ) { %>
+        <tr>
+            <td> <%= listData[i].id %> </td>
+            <td> <%= listData[i].sh_id %> </td>
+            <td> <%= listData[i].location %> </td>
+            <td> <%= listData[i].time %> </td>
+            <td> <%= listData[i].inference_index %> </td>
+            <td> <%= listData[i].inference_result %> </td>
+            <td> <%= listData[i].counts %> </td>
+            <td> <%= listData[i].mean %> </td>
+        </tr>
+    <% } %>
+
+    </table>    
+</body>
+</html>

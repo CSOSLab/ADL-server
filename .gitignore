@@ -1,0 +1,11 @@
+node_modules/
+test/
+public/
+.env
+adlenv_gen.js
+adlgen.js
+adlmv_gen.js
+insert_adl.js
+insert_adlenv.js
+insert_adlmv.js
+.vscode/

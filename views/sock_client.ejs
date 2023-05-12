@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO test</title>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+
+        const mes = {
+            shId : `AB001309`
+        };
+
+        function createSocket(ns){
+
+            const socket = io(`http://155.230.186.66:8000/${ns}`, {
+                path : `/ADL_DATA_UPDATE/`, 
+                transports : [`websocket`]
+            });
+            
+            return socket;
+        }
+
+        function appendElement(innerTextStr)
+        {
+            const para = document.createElement("p");
+            para.innerText = innerTextStr;
+            const div = document.getElementById("board");
+            div.appendChild(para);
+        }
+        
+        const socketADL = createSocket( `ADL_NOTIFIER` );
+        socketADL.on(`connect`, () => {
+            socketADL.emit(`hello`, JSON.stringify(mes));
+            console.log(`ADL connect`)
+            appendElement(`ADL connect`);
+        }); 
+       
+        socketADL.on(`update_adl`, () => {
+
+            console.log(`update_adl`);
+            appendElement(`update_adl`);            
+        });
+
+        socketADL.on(`disconnect`, (reason) => {
+
+            console.log(`ADL disconnect`);
+            appendElement(`ADL disconnect`);
+        });
+
+        const socketADLMV = createSocket(`ADLMV_NOTIFIER`);
+        
+        socketADLMV.on(`connect`, () => {
+
+            socketADLMV.emit(`hello`, JSON.stringify(mes));
+            console.log(`ADLMV connect`);
+            appendElement(`ADLMV connect`);
+        });        
+
+        socketADLMV.on(`update_adlmv`, () => {
+
+            console.log(`update_adlmv`);
+            appendElement(`update_adlmv`);
+        });
+
+        socketADLMV.on(`disconnect`, reason => {
+            
+            console.log(`ADLMV disconnected`);
+            appendElement(`ADLMV disconnected`);
+        });
+
+        const socketADLENV = createSocket(`ADLENV_NOTIFIER`);
+        
+        socketADLENV.on(`connect`, () => {
+           
+            socketADLENV.emit(`hello`, JSON.stringify(mes));
+            console.log(`ADLENV connect`);
+            appendElement(`ADLENV connect`);
+        });        
+
+        socketADLENV.on(`update_adlenv`, () => {
+
+            console.log(`update_adlenv`);
+            appendElement(`update_adlenv`);            
+        });
+
+        socketADLENV.on(`disconnect`, reason => {
+            
+            console.log(`ADLENV disconnected`);
+            appendElement(`ADLENV disconnected`);
+        });
+
+        const socketADLEVENT = createSocket(`ADLEVENT_NOTIFIER`);
+        
+        socketADLEVENT.on(`connect`, () => {
+           
+            socketADLENV.emit(`hello`, JSON.stringify(mes));
+            console.log(`ADLEVENT connect`);
+            appendElement(`ADLEVENT connect`);
+        });        
+
+        socketADLEVENT.on(`update_adlevent`, () => {
+
+            console.log(`update_adlevent`);
+            appendElement(`update_adlevent`);            
+        });
+
+        socketADLEVENT.on(`disconnect`, reason => {
+            
+            console.log(`ADLEVENT disconnected`);
+            appendElement(`ADLEVENT disconnected`);
+        });
+        
+      </script>
+</head>
+<body>
+    <div id="board">Notification logs</div>
+</body>
+</html>

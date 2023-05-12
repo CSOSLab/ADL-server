@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADL env.</title>
+    <style>
+        table, th, td {
+            border : 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>ADL Env.</h1>
+    <table>
+        <tr>
+            <% for( i in heads ) { %>
+            <th> <%= heads[i] %></th>
+            <% } %>
+        </tr>
+
+    <% for ( i in listData ) { %>
+        <tr>
+            <td> <%= listData[i].id %> </td>
+            <td> <%= listData[i].sh_id %> </td>
+            <td> <%= listData[i].location %> </td>
+            <td> <%= listData[i].time %> </td>
+            <td> <%= listData[i].pressure %> </td>
+            <td> <%= listData[i].temperature %> </td>
+            <td> <%= listData[i].humidity %> </td>
+            <td> <%= listData[i].gas_raw %> </td>
+            <td> <%= listData[i].IAQ %> </td>
+            <td> <%= listData[i].static_IAQ %> </td>
+            <td> <%= listData[i].e_CO2 %> </td>
+            <td> <%= listData[i].b_VOC %> </td>
+            <td> <%= listData[i].gas_percent %> </td>
+            <td> <%= listData[i].clear %> </td>
+            <td> <%= listData[i].raw_data %></td>            
+        </tr>
+    <% } %>
+
+    </table>    
+</body>
+</html>
