@@ -7,33 +7,52 @@ function handleADLData(adlData)
 }
 
 async function handleADLSound(adlSoundData)
-{    
-    await dao.createRawADLSound(adlSoundData);
+{
+    try
+    {
+        await dao.createRawADLSound(adlSoundData);
+    }
+    catch(err)
+    {
+        console.error(err);
+    }    
 }
 
 async function handleADLGridEye(adlGridEyeData)
 {
-    await dao.createRawADLGridEye( adlGridEyeData );
+    try{
+        await dao.createRawADLGridEye( adlGridEyeData );
+    }
+    catch(err)
+    {
+        console.error(err);
+    }
 }
 
 async function handleADLEventData(rADLEvent)
-{
-    dao.createRawADLEvent(rADLEvent);
+{   
+    try{
+        await dao.createRawADLEvent(rADLEvent);
 
-    const endTime = new Date(rADLEvent.time);    
-    const startTime = new Date(rADLEvent.time);
-    startTime.setSeconds( startTime.getSeconds() - rADLEvent.duration );
+        const endTime = new Date(rADLEvent.time);    
+        const startTime = new Date(rADLEvent.time);
+        startTime.setSeconds( startTime.getSeconds() - rADLEvent.duration );
 
-    const adlEvent = {
-        sh_id : rADLEvent.sh_id, 
-        location : rADLEvent.location, 
-        start_time : startTime, 
-        end_time : endTime, 
-        adl_event : rADLEvent.event
-    };
+        const adlEvent = {
+            sh_id : rADLEvent.sh_id, 
+            location : rADLEvent.location, 
+            start_time : startTime, 
+            end_time : endTime, 
+            adl_event : rADLEvent.event
+        };
 
-    await dao.createADLEvent(adlEvent);
-    sendADLEventUpdate(adlEvent.sh_id);
+        await dao.createADLEvent(adlEvent);
+        sendADLEventUpdate(adlEvent.sh_id);
+    }
+    catch(err)
+    {
+        console.error(err);
+    }
 }
 
 function handleADLEnvData(adlEnvData)
@@ -59,7 +78,11 @@ function handleADLEnvData(adlEnvData)
     .then( (value) => {
         
         sendADLEnvUpdate( value.sh_id );
-    } );
+    } )
+    .catch( (reason) => {
+
+        console.error( reason );
+    });
 }
 
 exports.handleADLData = handleADLData;
