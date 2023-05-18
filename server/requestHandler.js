@@ -213,6 +213,8 @@ async function onADLEvents(req, res)
     const listData = await getADLEvent(shId, fromTime, toTime);
     const data = formData( listData );
     res.status(200).json( JSON.stringify( data ));
+
+    console.log( JSON.stringify( listData ) );
 }
 
 //****
