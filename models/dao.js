@@ -27,7 +27,11 @@ function getRawADLSound(attr, wh)
 {
     return RawADLSound.findAll({
         attributes : attr, 
-        where : wh
+        where : wh, 
+        order : [
+            [`id`, `DESC`]
+        ], 
+        limit : 1000
     });
 }
 
@@ -35,7 +39,11 @@ function getRawADLGridEye(attr, wh)
 {
     return RawADLGridEye.findAll({
         attributes : attr, 
-        where : wh
+        where : wh, 
+        order : [
+            [`id`, `DESC`]
+        ], 
+        limit : 1000
     });
 }
 
@@ -197,7 +205,7 @@ async function getRawADLEvent(attr, wh)
 {
     return RawADLEvent.findAll({
         attributes : attr, 
-        where : wh
+        where : wh        
     });
 }
 
