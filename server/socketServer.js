@@ -23,22 +23,22 @@ function NAME_ROOM(shId, roomId)
 
 function sendADLUpdate(shId){
 
-    io.of(nsADL).to( NAME_ROOM(shId, `ADL`) ).emit(`update_adl`);
+    io.of(nsADL).to( NAME_ROOM(shId, `ADL`) ).emit(`update_data`);
 }
 
 function sendADLMVUpdate(shId)
 {
-    io.of(nsADLMV).to( NAME_ROOM(shId, `ADLMV`) ).emit(`update_adlmv`);
+    io.of(nsADLMV).to( NAME_ROOM(shId, `ADLMV`) ).emit(`update_data`);
 }
 
 function sendADLEnvUpdate(shId)
 {
-    io.of(nsADLENV).to( NAME_ROOM(shId, `ADLENV`) ).emit(`update_adlenv`);
+    io.of(nsADLENV).to( NAME_ROOM(shId, `ADLENV`) ).emit(`update_data`);
 }
 
 function sendADLEventUpdate(shId)
 {
-    io.of(nsADLEVENT).to( NAME_ROOM(shId, `ADLEVENT`) ).emit(`update_adlevent`);
+    io.of(nsADLEVENT).to( NAME_ROOM(shId, `ADLEVENT`) ).emit(`update_data`);
 }
 
 function initSocket(socket, room, mapSockets)
@@ -46,7 +46,7 @@ function initSocket(socket, room, mapSockets)
     socket.on('hello', (message) => {
         try {
             const mes = JSON.parse(message);
-            const shId = mes.shId;            
+            const shId = mes.shId;
 
             socket.join( NAME_ROOM(shId, room) );
 
@@ -64,7 +64,7 @@ function initSocket(socket, room, mapSockets)
         socket.leave( `${shId}:${room}` );
 
         mapSockets.delete(socket.id);
-    });    
+    });
 }
 
 io.of(nsADL).on(`connection`, (socket) => {

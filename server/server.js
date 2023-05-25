@@ -12,6 +12,8 @@ function main()
 
     app.set('view engine', 'ejs');
 
+    app.use( express.static( `test` ) );
+
     //** */
     app.get(`/socket_test`, (req, res) => { 
 
